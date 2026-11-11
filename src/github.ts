@@ -3,9 +3,19 @@
  *
  * Auth: a GitHub App (primary) or a fine-grained PAT (fallback). The App path
  * signs a 9-minute RS256 JWT with WebCrypto, exchanges it for an installation
- * token per repository owner, and caches that token in isolate memory until
- * five minutes before it expires. Neither credential ever leaves the Worker;
- * a container only ever receives a single-use JIT runner config.
+ * token, and caches that token in isolate memory until five minutes before it
+ * expires. Neither credential ever leaves the Worker; a container only ever
+ * receives a single-use JIT runner config.
+ *
+ * Which token each call uses (see `TokenScope`):
+ *   - repo token: narrowed with `repositories: [<repo>]` to the one repository
+ *     that owns the job. Used for job state, queued runs, run cancel, and the
+ *     runner endpoints when RUNNER_SCOPE=repo.
+ *   - org token: the installation's token without a repository list, because
+ *     organization permissions (Self-hosted runners) do not ride on a
+ *     repository-narrowed token. Used ONLY for /orgs/{org}/actions/runners/*
+ *     (generate-jitconfig, list, delete) when RUNNER_SCOPE=org.
+ * A PAT, when used instead of an App, is the same credential for every call.
  */
 import type { Config } from "./config";
 
@@ -176,12 +186,21 @@ interface CachedToken {
 	expiresAt: number;
 }
 
-/** Per-isolate cache. Installation tokens live 1 h; we refresh 5 min early. */
+/**
+ * Per-isolate caches. Installation tokens live 1 h; we refresh 5 min early.
+ * Token keys: `repo:<owner>/<name>` (narrowed) or `org:<owner>` (installation-wide).
+ */
 const tokenCache = new Map<string, CachedToken>();
+/** owner (lowercase) -> installation id; saves one lookup per token mint. */
+const installationCache = new Map<string, number>();
 
 export function clearTokenCache(): void {
 	tokenCache.clear();
+	installationCache.clear();
 }
+
+/** "repo": narrowed to the job's repository. "org": installation-wide, org runner endpoints only. */
+export type TokenScope = "repo" | "org";
 
 export class GitHubClient {
 	constructor(
@@ -196,11 +215,18 @@ export class GitHubClient {
 		return repo.slice(0, repo.indexOf("/"));
 	}
 
-	/** An installation token for `repo`'s owner, or the PAT. Throws with a named cause. */
-	async token(repo: string): Promise<string> {
+	/**
+	 * An installation token for `repo`, or the PAT. Throws with a named cause.
+	 * scope "repo" narrows the token to that single repository; scope "org"
+	 * returns the installation-wide token the org runner endpoints need.
+	 */
+	async token(repo: string, scope: TokenScope = "repo"): Promise<string> {
 		if (this.secrets.GITHUB_APP_ID && this.secrets.GITHUB_APP_PRIVATE_KEY) {
 			const owner = GitHubClient.ownerOf(repo).toLowerCase();
-			const hit = tokenCache.get(owner);
+			const name = repo.slice(repo.indexOf("/") + 1);
+			const key =
+				scope === "org" ? `org:${owner}` : `repo:${repo.toLowerCase()}`;
+			const hit = tokenCache.get(key);
 			if (hit && hit.expiresAt - 5 * 60_000 > this.now()) return hit.token;
 			const jwt = await signAppJwt(
 				this.secrets.GITHUB_APP_ID,
@@ -211,32 +237,41 @@ export class GitHubClient {
 				...this.baseHeaders(),
 				authorization: `Bearer ${jwt}`,
 			};
-			const inst = await this.fetchFn(`${API}/repos/${repo}/installation`, {
-				headers: appHeaders,
-				signal: AbortSignal.timeout(10_000),
-			});
-			if (!inst.ok) {
-				throw new Error(
-					`GitHub App installation lookup for ${repo} failed: HTTP ${inst.status} (${describeGitHubFailure(inst.status)})`,
-				);
+			let id = installationCache.get(owner);
+			if (id === undefined) {
+				const inst = await this.fetchFn(`${API}/repos/${repo}/installation`, {
+					headers: appHeaders,
+					signal: AbortSignal.timeout(10_000),
+				});
+				if (!inst.ok) {
+					throw new Error(
+						`GitHub App installation lookup for ${repo} failed: HTTP ${inst.status} (${describeGitHubFailure(inst.status)})`,
+					);
+				}
+				id = ((await inst.json()) as { id: number }).id;
+				installationCache.set(owner, id);
 			}
-			const { id } = (await inst.json()) as { id: number };
 			const res = await this.fetchFn(
 				`${API}/app/installations/${id}/access_tokens`,
 				{
 					method: "POST",
-					headers: appHeaders,
+					headers: { ...appHeaders, "content-type": "application/json" },
+					// Least privilege: a repo token can touch only the job's repository.
+					body:
+						scope === "org" ? "{}" : JSON.stringify({ repositories: [name] }),
 					signal: AbortSignal.timeout(10_000),
 				},
 			);
 			if (!res.ok) {
+				// A removed/reinstalled App changes the id: look it up again next time.
+				if (res.status === 404) installationCache.delete(owner);
 				throw new Error(
-					`installation token for ${owner} failed: HTTP ${res.status} (${describeGitHubFailure(res.status)})`,
+					`installation token (${scope === "org" ? `org ${owner}` : `repo ${repo}`}) failed: HTTP ${res.status} (${describeGitHubFailure(res.status)})`,
 				);
 			}
 			const body = (await res.json()) as { token: string; expires_at: string };
 			const expiresAt = Date.parse(body.expires_at);
-			tokenCache.set(owner, {
+			tokenCache.set(key, {
 				token: body.token,
 				expiresAt: Number.isNaN(expiresAt)
 					? this.now() + 30 * 60_000
@@ -258,6 +293,11 @@ export class GitHubClient {
 		};
 	}
 
+	/** Token for runner registration endpoints: org endpoints need the org token. */
+	private runnerTokenScope(): TokenScope {
+		return this.cfg.runnerScope === "org" ? "org" : "repo";
+	}
+
 	/** Base path for runner registration endpoints under the configured scope. */
 	runnersBase(repo: string): string {
 		return this.cfg.runnerScope === "org"
@@ -273,7 +313,7 @@ export class GitHubClient {
 	async request<T>(
 		repo: string,
 		url: string,
-		init: { method?: string; body?: unknown } = {},
+		init: { method?: string; body?: unknown; tokenScope?: TokenScope } = {},
 	): Promise<ApiResult<T>> {
 		const method = init.method ?? "GET";
 		const attempts = method === "GET" ? 3 : 1;
@@ -282,7 +322,7 @@ export class GitHubClient {
 		let detail = "";
 		for (let i = 1; i <= attempts; i++) {
 			try {
-				const token = await this.token(repo);
+				const token = await this.token(repo, init.tokenScope ?? "repo");
 				const res = await this.fetchFn(url, {
 					method,
 					headers: {
@@ -326,6 +366,7 @@ export class GitHubClient {
 			`${this.runnersBase(repo)}/generate-jitconfig`,
 			{
 				method: "POST",
+				tokenScope: this.runnerTokenScope(),
 				body: {
 					name,
 					// Repo-level runners only have the Default group (id 1).
@@ -428,6 +469,7 @@ export class GitHubClient {
 			const res = await this.request<{ runners?: RunnerRow[] }>(
 				repo,
 				`${this.runnersBase(repo)}?per_page=100&page=${page}`,
+				{ tokenScope: this.runnerTokenScope() },
 			);
 			if (!res.ok) return { runners, error: res };
 			const list = res.value?.runners ?? [];
@@ -443,6 +485,7 @@ export class GitHubClient {
 	): Promise<ApiResult<unknown>> {
 		return this.request(repo, `${this.runnersBase(repo)}/${runnerId}`, {
 			method: "DELETE",
+			tokenScope: this.runnerTokenScope(),
 		});
 	}
 

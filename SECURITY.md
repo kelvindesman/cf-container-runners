@@ -9,7 +9,7 @@ Please report security issues privately through GitHub's **Report a vulnerabilit
 | asset | where it lives | who can read it |
 |---|---|---|
 | GitHub App private key / PAT | Worker secret | the Worker only; never sent to a container |
-| Installation tokens (1 h) | Worker isolate memory | the Worker only |
+| Installation tokens (1 h) | Worker isolate memory | the Worker only; narrowed to the job's repository (org runner endpoints excepted, see README) |
 | Webhook secret | Worker secret | the Worker only |
 | JIT runner config | one container's env | that container's job, for that one job |
 | Your Cloudflare bill | `MAX_CONCURRENT` × `MAX_JOB_MINUTES` | anyone who can make jobs queue (see below) |
@@ -25,8 +25,8 @@ Please report security issues privately through GitHub's **Report a vulnerabilit
 7. **Bounded spend.** At most `MAX_CONCURRENT` containers; each is destroyed by its own Durable Object alarm at `MAX_JOB_MINUTES`. Abuse can cost at most that bound for as long as it lasts.
 8. **Closed admin surface.** `/stats` (job ids, repos, spend) requires `Authorization: Bearer $ADMIN_TOKEN` (constant-time compare) and returns 404 when the token is unset. `/health` returns `ok` and nothing else.
 9. **Cleanup is scoped.** The reaper and wedge sweeper only touch runners whose names start with `RUNNER_NAME_PREFIX`, never one minted in the last 10 minutes, and only act on states read from GitHub (an unreadable state means "do nothing").
-10. **Least-privilege App.** The exact permission set is in the README. Actions write is needed only for the opt-in `UNWEDGE_CANCEL`.
-11. **Pinned images.** The runner and Node tarballs are pinned by version **and** SHA-256; the runner user is non-root (the heavy image adds passwordless sudo inside the single-use container; remove it if you don't need it).
+10. **Least-privilege App and tokens.** The exact permission set is in the README. Each installation token is minted with `repositories: [<job's repo>]`; only org-scoped runner registration calls use an installation-wide token, because organization permissions need one. Actions write is needed only for the opt-in `UNWEDGE_CANCEL`.
+11. **Pinned images.** The `ubuntu:24.04` base is pinned by digest, and the runner and Node tarballs by version **and** SHA-256; the runner user is non-root (the heavy image adds passwordless sudo inside the single-use container; remove it if you don't need it).
 
 ## Public repositories: why they are denied
 

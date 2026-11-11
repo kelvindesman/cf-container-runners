@@ -1,6 +1,8 @@
 # Light runner image: actions/runner + git + node, nothing else.
 # Cloudflare Containers run linux/amd64 only.
-FROM --platform=linux/amd64 ubuntu:24.04
+# Base pinned by its multi-arch index digest (Docker Hub registry API,
+# fetched 2026-11-11 UTC). Refresh: see README "Updating the runner image".
+FROM --platform=linux/amd64 ubuntu:24.04@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
 
 # Pin by version AND checksum. Bump both together:
 #   runner: https://github.com/actions/runner/releases (SHA in the release notes)

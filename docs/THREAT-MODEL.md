@@ -5,7 +5,7 @@ Scope: the Worker, its Durable Objects, the runner images, and the GitHub App cr
 ## Assets
 
 - **A1 GitHub App private key / PAT.** Can register runners and, with Administration write, change repository settings. Highest value.
-- **A2 Installation tokens.** One-hour, installation-scoped versions of A1.
+- **A2 Installation tokens.** One-hour tokens minted from A1, each narrowed to the job's repository; org-scope runner calls use an installation-wide one.
 - **A3 Webhook secret.** Lets the holder forge webhooks.
 - **A4 JIT runner configs.** Each lets one runner take one job.
 - **A5 Spend.** Container time on the deployer's Cloudflare account.
@@ -31,7 +31,7 @@ Scope: the Worker, its Durable Objects, the runner images, and the GitHub App cr
 | T5 | Elevation: job for a non-allowlisted repo lands on our runner | org-scoped runner group shared with other repos | default `RUNNER_SCOPE=repo`; org scope documented to restrict the runner group to allowlisted repos and exclude public repos | misconfigured org runner group |
 | T6 | Denial of wallet | flood of legitimate-looking queued jobs from an allowlisted repo | spend bounded by `MAX_CONCURRENT` × `MAX_JOB_MINUTES`; per-container DO alarm deadline; optional soft budget alert | bound is reached while abuse lasts; budget alert is log-only by design (gating strands real jobs) |
 | T7 | Denial of service: pipeline stuck | lost webhooks, leaked slots, wedged registrations | reconcile against GitHub's queued list, sweep with two-read rule, exit reports, reaper, wedge detection, stranded list in `/stats` | GitHub or Cloudflare outage longer than the 6 h / 2 h retry walls |
-| T8 | Tampering: malicious image supply chain | swapped runner tarball | runner and Node pinned by version and SHA-256; base image by tag | `ubuntu:24.04` tag and apt packages are not digest-pinned (pin the base digest if you need reproducibility) |
+| T8 | Tampering: malicious image supply chain | swapped runner tarball | base image pinned by index digest; runner and Node pinned by version and SHA-256 | apt packages float with the Ubuntu archive at build time |
 | T9 | Info disclosure: `/stats` | competitor reads job ids and repo names | bearer `ADMIN_TOKEN`, constant-time compare, 404 when unset | token leak |
 | T10 | Tampering: cleanup deletes someone else's runner | reaper deletes a team's own self-hosted box | cleanup only touches `RUNNER_NAME_PREFIX` names, never within 10 min of mint, never on an unreadable state | another fleet using the same prefix |
 | T11 | Repudiation | who started that container? | every spawn, exit (with reason), deadline kill, strand and reconcile is logged with job id and repo; Workers observability on | logs retention is Cloudflare's |
@@ -40,7 +40,7 @@ Scope: the Worker, its Durable Objects, the runner images, and the GitHub App cr
 
 ## Permissions held (least privilege)
 
-Repo scope: Administration RW, Actions R, Metadata R. Org scope: Self-hosted runners RW (org), Actions R, Metadata R. Actions RW only with `UNWEDGE_CANCEL=1`. Administration RW is broader than this service needs (GitHub offers no narrower permission for repository runners); prefer org scope with a restricted runner group if that matters to you.
+Repo scope: Administration RW, Actions R, Metadata R. Org scope: Self-hosted runners RW (org), Actions R, Metadata R. Actions RW only with `UNWEDGE_CANCEL=1`. Tokens: repository-narrowed (`repositories: [<job's repo>]`) for every call except org-scope `/orgs/{org}/actions/runners/*`, which needs an installation-wide token; a leaked repo token reaches one repository. Administration RW is broader than this service needs (GitHub offers no narrower permission for repository runners); prefer org scope with a restricted runner group if that matters to you.
 
 ## Assumptions
 

@@ -95,6 +95,8 @@ GitHub → **Settings → Developer settings → GitHub Apps → New GitHub App*
 | Repository → Actions | Read-only | job status, reconcile |
 | Repository → Metadata | Read-only | mandatory |
 
+**Which token each call uses.** Every installation token is minted with `repositories: [<the job's repo>]`, so it can only touch the repository that owns the job: job status, queued runs, run cancel, and (repo scope) the runner endpoints. The one exception is org scope's `/orgs/{org}/actions/runners/*` calls (generate-jitconfig, list, delete): organization permissions don't ride on a repository-narrowed token, so those use an installation-wide token, and only those.
+
 Only if you set `UNWEDGE_CANCEL=1`: raise **Repository → Actions** to **Read and write** (it cancels the run pinning a wedged runner).
 
 Create the App, note its **App ID**, generate a **private key** (`.pem`), then **Install App** on the repositories you will allowlist (choose "Only select repositories").
@@ -179,6 +181,24 @@ npx wrangler tail          # live logs
 - **`reconciled`**: jobs GitHub still listed as queued that we had no record of (lost webhooks). Occasional is fine; a steady stream means webhooks are failing.
 
 Self-healing that runs without you: a cron tick every 5 minutes re-checks GitHub's queued jobs, reclaims containers whose exit report was lost (two reads + GitHub's word before declaring one dead), and deletes stale runner registrations this service minted (never one younger than 10 minutes, never another prefix).
+
+## Updating the runner image
+
+Both Dockerfiles pin three things; bump them together and redeploy:
+
+- **Base image** `ubuntu:24.04@sha256:…`: the multi-arch index digest, last fetched **2026-11-11 (UTC)**. Get the current one read-only from the Docker Hub registry API (no Docker needed):
+
+  ```bash
+  TOKEN=$(curl -fsS "https://auth.docker.io/token?service=registry.docker.io&scope=repository:library/ubuntu:pull" | jq -r .token)
+  curl -fsSI -H "Authorization: Bearer $TOKEN" \
+    -H "Accept: application/vnd.oci.image.index.v1+json" \
+    -H "Accept: application/vnd.docker.distribution.manifest.list.v2+json" \
+    https://registry-1.docker.io/v2/library/ubuntu/manifests/24.04 | grep -i docker-content-digest
+  ```
+
+  Update the digest and the fetch date in the Dockerfile comments and here.
+- **`RUNNER_VERSION` + `RUNNER_SHA256`**: from the [actions/runner releases](https://github.com/actions/runner/releases). GitHub refuses runners well behind the latest, so do this at least monthly.
+- **`NODE_VERSION` + `NODE_SHA256`**: from `https://nodejs.org/dist/v<version>/SHASUMS256.txt` (the `linux-x64.tar.xz` line).
 
 ## Troubleshooting
 
