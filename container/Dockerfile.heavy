@@ -1,0 +1,51 @@
+# Heavy runner image: the light image plus build essentials, Python and a
+# passwordless sudo grant (so jobs can `apt-get install` their own deps).
+# Build-time only: nothing here is a credential.
+FROM --platform=linux/amd64 ubuntu:24.04
+
+ARG RUNNER_VERSION=2.338.2
+ARG RUNNER_SHA256=baebf204307bac6193480852732f0aba2ae97b6c5597c244f4d5558390147c40
+ARG NODE_VERSION=22.22.0
+ARG NODE_SHA256=9aa8e9d2298ab68c600bd6fb86a6c13bce11a4eca1ba9b39d79fa021755d7c37
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    RUNNER_ALLOW_RUNASROOT=0 \
+    AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+# hadolint ignore=DL3008
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       ca-certificates curl git jq unzip zip xz-utils zstd procps sudo \
+       build-essential python3 python3-venv python3-pip pkg-config \
+       libicu74 liblttng-ust1 libkrb5-3 zlib1g \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL -o /tmp/node.tar.xz "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz" \
+    && echo "${NODE_SHA256}  /tmp/node.tar.xz" | sha256sum -c - \
+    && mkdir -p "${AGENT_TOOLSDIRECTORY}/node/${NODE_VERSION}/x64" \
+    && tar -xJf /tmp/node.tar.xz -C "${AGENT_TOOLSDIRECTORY}/node/${NODE_VERSION}/x64" --strip-components=1 \
+    && touch "${AGENT_TOOLSDIRECTORY}/node/${NODE_VERSION}/x64.complete" \
+    && tar -xJf /tmp/node.tar.xz -C /usr/local --strip-components=1 \
+       --exclude='*/CHANGELOG.md' --exclude='*/LICENSE' --exclude='*/README.md' \
+    && rm /tmp/node.tar.xz \
+    && node --version
+
+# Passwordless sudo: the container is single-use and single-job, so this
+# grants nothing that outlives the job. Remove it if your jobs never install.
+RUN useradd -m -s /bin/bash runner \
+    && echo "runner ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/runner \
+    && chmod 0440 /etc/sudoers.d/runner \
+    && chown -R runner:runner "${AGENT_TOOLSDIRECTORY}"
+
+WORKDIR /home/runner
+RUN curl -fsSL -o /tmp/runner.tar.gz "https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz" \
+    && echo "${RUNNER_SHA256}  /tmp/runner.tar.gz" | sha256sum -c - \
+    && tar -xzf /tmp/runner.tar.gz \
+    && rm /tmp/runner.tar.gz \
+    && chown -R runner:runner /home/runner
+
+COPY --chown=runner:runner entrypoint.sh /home/runner/entrypoint.sh
+USER runner
+ENTRYPOINT ["/home/runner/entrypoint.sh"]

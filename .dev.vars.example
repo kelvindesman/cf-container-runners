@@ -1,0 +1,16 @@
+# Copy to .dev.vars for `wrangler dev` (never commit .dev.vars).
+# In production set each with: npx wrangler secret put <NAME>
+
+# Required. The webhook secret you typed into the GitHub App's webhook settings.
+GITHUB_WEBHOOK_SECRET=replace-with-a-long-random-string
+
+# GitHub App auth (recommended).
+GITHUB_APP_ID=123456
+# The App's private key PEM. Escaped newlines (\n) are accepted.
+GITHUB_APP_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----"
+
+# Alternative to the App: a fine-grained personal access token. Ignored when the App is set.
+# GITHUB_PAT=github_pat_...
+
+# Optional. Bearer token for GET /stats. /stats returns 404 when unset.
+# ADMIN_TOKEN=replace-with-another-long-random-string

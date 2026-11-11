@@ -1,0 +1,85 @@
+// cf-container-runners: every deploy-specific value lives here (vars) or in
+// secrets (`wrangler secret put`). See README.md "Configuration".
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "cf-container-runners",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-10-01",
+	"observability": { "enabled": true },
+
+	// Backstop tick: wakes the Dispatcher even if its alarms were lost, to
+	// sweep dead containers, reconcile with GitHub's queued jobs and reap stale
+	// runner registrations. Must stay paired with `scheduled()` in src/index.ts.
+	"triggers": { "crons": ["*/5 * * * *"] },
+
+	"vars": {
+		// "0" = stop starting containers (webhooks still verified + logged).
+		"DISPATCH_ENABLED": "1",
+
+		// REQUIRED. Comma-separated `owner/repo` or `owner/*`. Empty = serve nothing.
+		"ALLOWED_REPOS": "",
+
+		// Public repos run fork-PR code: denied unless listed here by exact name.
+		"ALLOW_PUBLIC_REPOS": "",
+
+		// runs-on label -> container class (light | heavy). A job must request
+		// `self-hosted` + exactly one of these labels (+ optional linux / x64).
+		"RUNNER_LABELS": "cf-runner=light,cf-runner-heavy=heavy",
+
+		// THE SPEND BOUND: at most MAX_CONCURRENT containers, each killed at
+		// MAX_JOB_MINUTES. Keep every class's `max_instances` >= MAX_CONCURRENT,
+		// and `rollout_active_grace_period` >= MAX_JOB_MINUTES * 60.
+		"MAX_CONCURRENT": "4",
+		"MAX_JOB_MINUTES": "60",
+
+		// Soft daily alert in container-minutes (logs "BUDGET ALERT:" once a
+		// day). NEVER refuses a spawn. "0" disables.
+		"SOFT_DAILY_BUDGET_MINUTES": "0",
+
+		// "repo" (runner registered to the job's repo) or "org" (to its org).
+		"RUNNER_SCOPE": "repo",
+		// Org scope only: runner group id. 1 = Default.
+		"RUNNER_GROUP_ID": "1",
+		// Every runner name starts with this; the reaper only touches this prefix.
+		"RUNNER_NAME_PREFIX": "ccr",
+		// Seconds a booted runner waits for a job before exiting. "" = 90.
+		"IDLE_GRACE_SECONDS": "",
+		// Minimum gap between container starts. Bursts get refused by the platform.
+		"SPAWN_SPACING_MS": "2000",
+		// "1" lets the wedge sweeper cancel the run pinning an offline+busy
+		// runner, then delete it. Needs the App permission Actions: write.
+		"UNWEDGE_CANCEL": "0"
+	},
+
+	"containers": [
+		{
+			"class_name": "LightRunner",
+			"image": "./container/Dockerfile",
+			"max_instances": 4,
+			"instance_type": { "vcpu": 1, "memory_mib": 3072, "disk_mb": 6000 },
+			"rollout_active_grace_period": 3600
+		},
+		{
+			"class_name": "HeavyRunner",
+			"image": "./container/Dockerfile.heavy",
+			"max_instances": 4,
+			"instance_type": { "vcpu": 4, "memory_mib": 12288, "disk_mb": 20000 },
+			"rollout_active_grace_period": 3600
+		}
+	],
+
+	"durable_objects": {
+		"bindings": [
+			{ "name": "DISPATCHER", "class_name": "Dispatcher" },
+			{ "name": "RUNNER_LIGHT", "class_name": "LightRunner" },
+			{ "name": "RUNNER_HEAVY", "class_name": "HeavyRunner" }
+		]
+	},
+
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": ["Dispatcher", "LightRunner", "HeavyRunner"]
+		}
+	]
+}
