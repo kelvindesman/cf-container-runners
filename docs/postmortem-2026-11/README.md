@@ -9,6 +9,7 @@ This folder backs the write-up about running all CI for one production repo on t
 - `ci_pr_run_durations.csv` — the raw rows behind it: one row per successful first-attempt PR run of the main CI workflow, 2026-06-26 to 2026-10-17 (4,559 rows: start time, era, wall minutes).
 - `job_queue_waits.csv` — sampled successful jobs: start time, era, minutes queued, minutes running. Job names removed.
 - `ci-run-duration-by-era.png` / `.svg` — the chart drawn from those rows.
+- `github-actions-usage-2026-11-12.png`, `github-actions-performance-2026-11-12.png` — GitHub's own Actions usage and performance pages for the repo, last 90 days, captured 2026-11-12.
 
 ## What is not here
 
