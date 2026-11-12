@@ -85,6 +85,20 @@ Correction: the 07-22 commit says "173 runs queued about 23 h". Run data shows 8
 07-20..07-22 took over 6 h from create to finish (57 of them still succeeded). The original
 claim is not supported and must not be published.
 
+## Speed (from `speed-output.txt`)
+
+ci.yml pull_request runs, success, first attempt, wall minutes:
+
+| Era | n | median | p90 | job wait median / p90 |
+|---|---|---|---|---|
+| Old VMs 06-26..07-09 | 477 | 17.4 | 47.6 | 0.10 / 7.93 |
+| Containers 07-10..07-31 | 972 | 19.8 | 59.4 | 0.42 / 14.42 |
+| Containers Aug | 1,117 | 23.1 | 36.5 | 0.42 / 12.18 |
+| Containers Sep | 1,126 | 25.0 | 39.0 | 0.18 / 6.25 |
+| Containers Oct 1-17 | 867 | 19.8 | 29.2 | 0.18 / 6.18 |
+
+Median did not improve; p90 fell from 47.6 to 29.2 by October. The workflow grew over the period, so eras are not identical workloads. No GitHub-hosted benchmark exists: this CI never ran there, and the account cannot start Actions jobs now. Direct mode (from 10-18) has no per-run duration (R2 logs carry upload time only).
+
 ## Verdict
 
 - For a small team with heavy, bursty CI (many AI-agent PRs, Playwright e2e, big builds),

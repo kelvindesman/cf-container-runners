@@ -1,0 +1,14 @@
+ci.yml pull_request runs, success, first attempt: wall minutes (run start to finish)
+  Old VMs 06-26..07-09  n=  477  p25= 12.9  median= 17.4  p75= 29.9  p90= 47.6
+  Containers 07-10..07-31  n=  972  p25= 14.9  median= 19.8  p75= 30.7  p90= 59.4
+  Containers Aug           n= 1117  p25= 18.2  median= 23.1  p75= 29.5  p90= 36.5
+  Containers Sep           n= 1126  p25= 18.8  median= 25.0  p75= 31.4  p90= 39.0
+  Containers Oct 1-17      n=  867  p25= 15.8  median= 19.8  p75= 24.7  p90= 29.2
+  total runs (rows in ci_pr_run_durations.csv): 4,559
+
+job queue wait, minutes (job created to job started), sampled successful jobs
+  Old VMs 06-26..07-09  n=  187  median= 0.10  p90=  7.93
+  Containers 07-10..07-31  n=  257  median= 0.42  p90= 14.42
+  Containers Aug           n=  638  median= 0.42  p90= 12.18
+  Containers Sep           n=  608  median= 0.18  p90=  6.25
+  Containers Oct 1-17      n=  653  median= 0.18  p90=  6.18
