@@ -64,9 +64,8 @@ The optional `SOFT_DAILY_BUDGET_MINUTES` logs `BUDGET ALERT:` once a day when cr
 
 You need: a Cloudflare account on **Workers Paid** (Containers require it), Docker running locally (wrangler builds the images), Node 20+ and pnpm.
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=<REPO_URL>)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/kelvindesman/cf-container-runners)
 
-> Replace `<REPO_URL>` with this repository's URL. The button clones the repo into your account and deploys it; you still do steps 1, 3 and 5 below.
 
 ### 1. Create a GitHub App
 
@@ -106,7 +105,7 @@ Create the App, note its **App ID**, generate a **private key** (`.pem`), then *
 ### 2. Configure
 
 ```bash
-git clone <REPO_URL> cf-container-runners && cd cf-container-runners
+git clone https://github.com/kelvindesman/cf-container-runners.git cf-container-runners && cd cf-container-runners
 pnpm install
 ```
 
