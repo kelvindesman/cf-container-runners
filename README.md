@@ -4,6 +4,8 @@ Ephemeral GitHub Actions self-hosted runners on [Cloudflare Containers](https://
 
 A Cloudflare Worker receives GitHub's `workflow_job` webhook. For each queued job whose labels match, it starts **one container**. The container registers a **just-in-time (JIT) runner**, runs exactly that one job, exits, and billing stops. Nothing runs between jobs, so **idle costs $0**.
 
+> **Status (2026-11-12):** extracted from a runner design that carried one production repo's CI from July to October 2026 ([postmortem data](docs/postmortem-2026-11/)). This standalone version passes its 104 unit tests and secret scans. A live end-to-end run on a fresh Cloudflare account has not happened yet; if you deploy it, please open an issue with what worked and what didn't.
+
 ## The 60-second version
 
 **What:** `runs-on: [self-hosted, cf-runner]` in a workflow → a fresh 1 vCPU / 3 GiB container (or 4 vCPU / 12 GiB with `cf-runner-heavy`) boots, runs the job and disappears.

@@ -1,0 +1,356 @@
+== 1. Cloudflare container spend (gross list price, all container apps) ==
+days with data: 98 of 124; gaps: 2026-07-10..2026-07-26 (17d), 2026-09-22..2026-09-30 (9d)
+
+day         all_$   ci_heavy_$  ci_light_$  heavy_container_h  source
+2026-07-27    22.08           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-07-28    21.26           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-07-29    21.15           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-07-30    13.85           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-07-31     7.31           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-01     0.21           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-02     8.94           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-03    25.96           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-04    15.52           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-05    24.72           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-06     9.69           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-07    15.99           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-08     0.96           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-09     7.72           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-10    23.86           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-11    22.41           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-12    33.38           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-13    20.85           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-14    26.17           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-15     1.04           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-16    10.71           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-17    37.84           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-18    17.60           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-19     6.18           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-20    20.63           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-21    14.86           -           -                  -  cloudflare-spend-2026-08 (all apps)
+2026-08-22    25.29           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-08-23    16.46           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-08-24    21.45           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-08-25    13.38           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-08-26    15.39           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-08-27    11.45           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-08-28    25.76           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-08-29    35.47           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-08-30    46.71           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-08-31    42.42           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-01    38.78           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-02    50.12           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-03    25.54           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-04    24.82           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-05    36.43           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-06    24.29           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-07    44.66           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-08    25.37           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-09    18.33           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-10     0.77           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-11     1.04           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-12     0.62           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-13    15.84           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-14    52.14           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-15    13.48           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-16     1.12           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-17     0.87           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-18     0.74           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-19     0.96           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-20     9.02           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-09-21    35.37           -           -                  -  cloudflare-spend-2026-09 (all apps)
+2026-10-01     1.63        1.22        0.02                6.3  cloudflare-container-roi-2026-10 (per app)
+2026-10-02     1.45        1.16        0.01                5.9  cloudflare-container-roi-2026-10 (per app)
+2026-10-03     1.45        1.01        0.01                5.4  cloudflare-container-roi-2026-10 (per app)
+2026-10-04    10.61       10.13        0.17               43.6  cloudflare-container-roi-2026-10 (per app)
+2026-10-05    54.63       53.63        0.87              232.9  cloudflare-container-roi-2026-10 (per app)
+2026-10-06    54.54       53.26        1.07              229.2  cloudflare-container-roi-2026-10 (per app)
+2026-10-07    37.85       37.00        0.58              163.9  cloudflare-container-roi-2026-10 (per app)
+2026-10-08    34.97       33.64        0.66              151.9  cloudflare-container-roi-2026-10 (per app)
+2026-10-09    46.81       44.79        0.84              195.4  cloudflare-container-roi-2026-10 (per app)
+2026-10-10    36.65       35.96        0.66              159.3  cloudflare-container-roi-2026-10 (per app)
+2026-10-11    51.88       50.96        0.89              222.0  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-12    47.81       46.54        0.82              213.7  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-13    59.87       58.43        1.08              263.0  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-14    57.73       56.40        1.06              251.2  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-15    43.40       42.62        0.69              191.1  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-16    17.37       16.85        0.34               78.3  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-17    17.49       16.83        0.32               75.8  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-18     1.12        0.61           -                2.3  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-19     6.37        5.89           -               23.7  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-20    10.25        9.51           -               40.2  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-21    19.36       18.62           -               77.6  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-22    14.98       14.67           -               61.5  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-23     8.49        8.26           -               34.3  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-24    12.90       12.46           -               55.9  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-25    12.67       12.28           -               55.7  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-26     8.07        7.95           -               33.8  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-27    17.83       17.32           -               72.9  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-28    10.43       10.22           -               45.2  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-29    18.21       18.08           -               75.3  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-30    26.90       26.74           -              111.0  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-10-31    37.66       37.50           -              148.1  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-11-01    42.93       42.74           -              167.8  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-11-02    37.54       37.32           -              150.7  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-11-03    33.38       33.23           -              137.7  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-11-04    25.74       25.52           -              107.3  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-11-05    22.77       22.52           -               91.3  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-11-06    10.99       10.97           -               46.4  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-11-07    14.11       13.97           -               57.1  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-11-08    10.68       10.57           -               43.9  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-11-09    10.48       10.31           -               41.9  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+2026-11-10    12.69       12.55           -               52.1  data/cf_usage_daily_2026-10-11_2026-11-12.json (per app)
+
+per month (observed days only):
+  2026-07  days= 5  sum=$   85.65  mean/day=$ 17.13
+  2026-08  days=31  sum=$  599.04  mean/day=$ 19.32
+  2026-09  days=21  sum=$  420.32  mean/day=$ 20.02
+  2026-10  days=31  sum=$  781.35  mean/day=$ 25.20
+  2026-11  days=10  sum=$  221.32  mean/day=$ 22.13
+  total observed $2107.67 over 98 days (mean $21.51/day)
+  gap 07-10..07-26: only figure is the Jun 27..Jul 26 billable line, $129.66 for ALL container apps incl. 06-27..07-09 (commit 97ab1d0b4); $45.41 of it was billed by 07-19 (same commit)
+  gap 09-22..09-30: see section 2, 'gap estimate from runs'
+  bill cross-check 09-27..09-30: (78.16 + 73.28) x 1.04 - observed 10-01..10-05 $69.76 = $87.74 (ESTIMATE, disk excluded)
+
+per era (observed days):
+  Actions era 07-27..10-17     days=74  $ 1681.12  $22.72/day
+  direct mode 10-18..11-10     days=24  $  426.55  $17.77/day
+  pre-gate 10-01..10-16        days=16  $  558.64  $34.91/day
+  $10 gate 10-18..11-10        days=24  $  426.55  $17.77/day
+
+per app, windows with an app split:
+  07-27..08-21  total $430.90  ci heavy (4 vCPU/12 GiB) $417.49 (96.9%)  ci light (1 vCPU/3 GiB) $6.98 (1.6%)  social video $6.43 (1.5%)
+  08-22..09-21  total $674.10  ci heavy (4 vCPU/12 GiB) $656.54 (97.4%)  ci light (1 vCPU/3 GiB) $13.15 (2.0%)  social video $4.41 (0.7%)
+  10-01..11-10  total $1002.67  ci heavy (4 vCPU/12 GiB) $980.28 (97.8%)  social video $11.82 (1.2%)  ci light (1 vCPU/3 GiB) $10.09 (1.0%)  voice demo $0.47 (0.0%)
+
+== 2. GitHub Actions runs and estimated jobs/minutes per UTC day ==
+runs (deduped): 171785, created 2026-06-26T00:00:21Z .. 2026-10-19T23:48:38Z
+job sample: 5532 jobs in 1767 runs, 266 (workflow, month) cells
+
+day         runs  startup_fail  est_jobs  est_heavy_min  est_light_min  est_bad_min  cf_heavy_container_min
+2026-07-10    649             1      1093           2993            185          337  -
+2026-07-11    969             0      1539           4124            262          516  -
+2026-07-12   1314             0      2091           5621            352          704  -
+2026-07-13   1188            35      1823           4904            301          623  -
+2026-07-14    604             3       962           2539            166          323  -
+2026-07-15   1190             0      1933           5121            334          650  -
+2026-07-16    850             0      1449           3897            251          478  -
+2026-07-17   1330             0      2184           5865            373          728  -
+2026-07-18   1105             0      1912           5053            364          610  -
+2026-07-19    485             0       821           2173            158          253  -
+2026-07-20    961             0      1155           2970            221          361  -
+2026-07-21   2354             0      2682           6815            520          804  -
+2026-07-22   3940             0      4235          11063            687         1395  -
+2026-07-23    923             0      1029           2673            173          351  -
+2026-07-24     27             0        25             16              1           11  -
+2026-07-25     29             0        26             16              1           11  -
+2026-07-26    645             0       737           1969            115          244  -
+2026-07-27   1908             0      2176           5753            366          753  -
+2026-07-28   1480             0      1687           4588            270          544  -
+2026-07-29   1448             0      1629           4287            271          551  -
+2026-07-30    851             0       998           2814            149          332  -
+2026-07-31    475             0       563           1569             78          186  -
+2026-08-01     30             0       101            204              4          112  -
+2026-08-02    743             0      1196           2446            147          200  -
+2026-08-03   1631             0      2529           5444            271          598  -
+2026-08-04   1072             0      1572           3261            167          161  -
+2026-08-05   1297             0      2054           4337            203          333  -
+2026-08-06    726             0      1077           2225            114          137  -
+2026-08-07   1207             0      1778           3669            196          193  -
+2026-08-08     71             0       137            237             12           60  -
+2026-08-09    562             0       851           1717            100          117  -
+2026-08-10   1542             0      2436           5033            279          336  -
+2026-08-11   1281             0      1942           4040            208          206  -
+2026-08-12   2087             0      3102           6392            351          305  -
+2026-08-13   1144             0      1742           3617            187          257  -
+2026-08-14   1825             0      2612           5476            272          308  -
+2026-08-15     80             0       154            430              6          197  -
+2026-08-16    768             0      1147           2423            120          229  -
+2026-08-17   2452             0      3717           7812            416          557  -
+2026-08-18   1295             0      2071           4366            210          394  -
+2026-08-19    829             1      1040           2132             93          317  -
+2026-08-20   1700             0      2049           4100            202          378  -
+2026-08-21   2390             0      2762           5459            283          433  -
+2026-08-22   2359             0      2848           5593            294          429  -
+2026-08-23   1584             0      1860           3608            183          320  -
+2026-08-24   1763             0      2119           4192            213          454  -
+2026-08-25   1308             0      1577           3053            159          281  -
+2026-08-26   1347             6      1671           3304            163          341  -
+2026-08-27    985             0      1202           2390            112          240  -
+2026-08-28   2099             0      2598           5334            253          621  -
+2026-08-29   3120             0      3812           7603            367          601  -
+2026-08-30   4135             0      4983           9712            498          596  -
+2026-08-31   3471             0      4045           8016            373          614  -
+2026-09-01   3007             0      3631          11103            329         2047  -
+2026-09-02   3952             0      4583          13550            414         2378  -
+2026-09-03   2505             0      3023           8878            260         1590  -
+2026-09-04   1679             0      2034           6013            177         1117  -
+2026-09-05   3577             0      4177          12149            345         2207  -
+2026-09-06   2143             0      2552           7567            215         1399  -
+2026-09-07   4078             0      4673          13535            416         2439  -
+2026-09-08   2212             0      2620           7742            232         1409  -
+2026-09-09   1677             0      1923           5536            163         1024  -
+2026-09-10     46             0        92            307              4          148  -
+2026-09-11     46             0        92            307              4          148  -
+2026-09-12     49             0        94            314              4          152  -
+2026-09-13   1333             0      1572           4721            146          908  -
+2026-09-14   4043             0      4799          14342            393         2660  -
+2026-09-15    921             0      1128           3458             88          750  -
+2026-09-16     62             0       116            361              5          178  -
+2026-09-17     62             0       116            361              5          178  -
+2026-09-18     62             0       116            361              5          178  -
+2026-09-19     62             0       116            361              5          178  -
+2026-09-20    444             0       683           2292             43          556  -
+2026-09-21   3992             0      4838          14870            429         2765  -
+2026-09-22   1737             0      2031           5939            183         1128  -
+2026-09-23   2065             0      2424           7082            206         1351  -
+2026-09-24   1959             0      2242           6451            192         1219  -
+2026-09-25   2042             0      2404           6998            206         1332  -
+2026-09-26   2426             0      2902           8605            260         1581  -
+2026-09-27   3292             0      3723          10654            352         1891  -
+2026-09-28   2905             0      3454          10246            304         1913  -
+2026-09-29   2576             0      2918           8449            248         1552  -
+2026-09-30     67             0       121            372              5          181  -
+2026-10-01     77             0       163            395             13          120  376
+2026-10-02     66             0       123            263             11           92  354
+2026-10-03     64             0       121            259             11           90  326
+2026-10-04    551             0       816           2674             69          434  2613
+2026-10-05   3620             0      4493          13790            481         1787  13976
+2026-10-06   4041             0      4826          14568            553         1851  13753
+2026-10-07   2348             0      2892           9143            304         1280  9836
+2026-10-08   2423             0      2978           9146            308         1226  9112
+2026-10-09   2938             0      3665          11543            415         1554  11724
+2026-10-10   2775             0      3324          10328            362         1317  9560
+2026-10-11   3368             0      4103          12923            480         1734  13321
+2026-10-12   3336             0      3897          12127            429         1560  12825
+2026-10-13   3306             0      3979          12364            421         1675  15783
+2026-10-14   2884             0      3236           9779            365         1315  15075
+2026-10-15   3332             0      3520          10154            371         1261  11465
+2026-10-16   1590             0      1818           5215            173          694  4699
+2026-10-17   1461            62      1632           4867            161          666  4548
+2026-10-18    130           130         0              0              0            0  138
+2026-10-19    319           319         0              0              0            0  1423
+
+per month (Actions era, UTC, 2026-07-10..2026-10-17):
+  2026-07 runs= 24725 est_jobs=  32750 est_job_min=   92420 (heavy 86823, light 5596, hosted 1) failed/cancelled job-min=10766 (11.6%) unmodelled_runs=0
+  2026-08 runs= 46903 est_jobs=  62784 est_job_min=  134889 (heavy 127624, light 6455, hosted 811) failed/cancelled job-min=10326 (7.7%) unmodelled_runs=0
+  2026-09 runs= 55021 est_jobs=  65199 est_job_min=  199201 (heavy 192926, light 5635, hosted 641) failed/cancelled job-min=36556 (18.4%) unmodelled_runs=0
+  2026-10 runs= 38180 est_jobs=  45585 est_job_min=  144478 (heavy 139538, light 4927, hosted 12) failed/cancelled job-min=18658 (12.9%) unmodelled_runs=0
+
+GitHub usage-metrics window 2026-08-14..2026-11-11 (owner screenshot: 554,030 min, 151,091 job runs, 51,888 failed-job min):
+  this estimate: 153050 jobs, 433600 job-min, 62525 failed/cancelled job-min (14.4%)
+  ratio screenshot/estimate: jobs 0.99, minutes 1.28
+  Actions days in window with a job: 2026-08-14..2026-10-17; days with zero Actions jobs (direct mode): 25 of 90
+  CF billed container-min on days with a per-app split inside the window (10-01..10-17): 160619
+  sampled job queue time: median 0.2 min, p90 7.6 min, mean 4.5 min (n=2785)
+
+before era 2026-06-26..2026-07-09 (boxes): runs/day 465, est jobs/day 816, est job-min/day 2536, merged PRs/day 29.9
+  2026-07-10..2026-07-19: runs/day 968, est job-min/day 4504, merged PRs/day 45.1
+  2026-07-20..2026-07-26: runs/day 1268, est job-min/day 3891, merged PRs/day 34.7
+  2026-07-27..2026-08-31: runs/day 1474, est job-min/day 4306, merged PRs/day 37.8
+  2026-09-01..2026-10-17: runs/day 1983, est job-min/day 7312, merged PRs/day 38.6
+
+gap estimate from runs (ESTIMATE): median CF $ per est. job-min on 74 observed days = $0.0039
+  2026-07-10..2026-07-19: 45035 est job-min x $0.0039 = $175  (boxes still primary until 07-17/20: container share unknown, upper bound)
+  2026-07-20..2026-07-26: 27240 est job-min x $0.0039 = $106
+  2026-09-22..2026-09-30: 66753 est job-min x $0.0039 = $260
+best-estimate total 2026-07-10..2026-11-10: $2466 (= observed days $2108 + 07-10..07-19 bill-to-date (upper bound, includes 06-27..07-09) $45 + 07-20..07-26 = $129.66 cycle bill - $45.41 billed by 07-19 $84 + 09-22..09-26 runs estimate $141 + 09-27..09-30 bill cross-check $88) = $19.88/day over 124 days
+  sampled job-minute share by lane: heavy 96.2%, light 1.9%, hosted 1.5%, other 0.5%
+
+== 3. Direct-mode volume (invisible to GitHub's Actions usage metrics) ==
+day         lane_logs  test_lanes  deploy_lanes  guards_waves  cf_heavy_container_h
+2026-10-17         10          10             0             2                  75.8
+2026-10-18         17          17             0             5                   2.3
+2026-10-19        140         137             3            24                  23.7
+2026-10-20        289         253            36            46                  40.2
+2026-10-21        616         494           122            91                  77.6
+2026-10-22        562         351           211            62                  61.5
+2026-10-23        306         175           131            34                  34.3
+2026-10-24        367         247           120            42                  55.9
+2026-10-25        493         322           171            57                  55.7
+2026-10-26        326         166           160            33                  33.8
+2026-10-27        670         454           216            78                  72.9
+2026-10-28        380         242           138            46                  45.2
+2026-10-29        754         493           261            97                  75.3
+2026-10-30       1131         699           432           195                 111.0
+2026-10-31       1235         886           349           233                 148.1
+2026-11-01       1370        1015           355           246                 167.8
+2026-11-02       1205         844           361           204                 150.7
+2026-11-03       1200         827           373           197                 137.7
+2026-11-04       1055         740           315           168                 107.3
+2026-11-05        832         598           234           131                  91.3
+2026-11-06        470         303           167            71                  46.4
+2026-11-07        644         435           209            90                  57.1
+2026-11-08        478         344           134            75                  43.9
+2026-11-09        456         325           131            64                  41.9
+2026-11-10        486         363           123            73                  52.1
+total 10-18..2026-11-10: 15492 lane logs (10740 test, 4752 deploy), 2364 guards waves (one per tested SHA), 1734 heavy container-hours (104016 container-min), over 24 days
+
+== 4. Counterfactual: the same minutes at other list prices (fetched 2026-11-12) ==
+(a) GitHub-reported 554,030 job-min (2026-08-14..10-17 effective), heavy share 96.7%:
+    GitHub-hosted, heavy on 4-core $0.012 + light on 2-core $0.006, minus 3 x 2,000 free: $6502
+    GitHub-hosted, everything on standard 2-core $0.006 (only shape a personal account gets): $3288
+    Blacksmith, heavy 4 vCPU $0.008 + light 2 vCPU $0.004, minus 3 x 3,000 free: $4322
+    Cloudflare actually billed (gross list) on 56 observed days of 65 in 2026-08-14..2026-10-17: $1385 -> scaled to all 65 days: $1608
+(b) Billed CF container-minutes on per-app days, priced per minute:
+    Actions era 10-01..10-17   heavy 149347 min + light 11272 min; CF $570.53; GitHub 4-core/2-core $1859.79; Blacksmith $1239.86; per day CF $33.56 vs GH $109.40 vs BS $72.93
+    direct mode 10-18..11-10   heavy 104016 min + light 0 min; CF $419.84; GitHub 4-core/2-core $1248.19; Blacksmith $832.12; per day CF $17.49 vs GH $52.01 vs BS $34.67
+    effective CF heavy price per billed container-min: $0.0039 (vs GitHub 4-core $0.012, Blacksmith 4 vCPU $0.008)
+
+== 5. Waste and $ per merged PR ==
+month     cf_$ (obs days)  obs_days  merged_PRs(obs days)  $/merged_PR  failed/cancelled job-min share
+2026-07            85.65         5                   237         0.36  11.6%
+2026-08           599.04        31                  1124         0.53  7.7%
+2026-09           420.32        21                   792         0.53  18.4%
+2026-10           781.35        31                  1235         0.63  12.9%
+2026-11           221.32        10                   506         0.44  n/a (direct mode)
+weekly $/merged PR (ISO weeks, observed CF days only):
+  2026-W31 days=7 $  94.79 PRs= 256 $/PR=0.37
+  2026-W32 days=7 $ 100.56 PRs= 235 $/PR=0.43
+  2026-W33 days=7 $ 138.43 PRs= 265 $/PR=0.52
+  2026-W34 days=7 $ 138.87 PRs= 228 $/PR=0.61
+  2026-W35 days=7 $ 169.61 PRs= 309 $/PR=0.55
+  2026-W36 days=7 $ 242.40 PRs= 446 $/PR=0.54
+  2026-W37 days=7 $ 106.63 PRs= 195 $/PR=0.55
+  2026-W38 days=7 $  78.34 PRs= 144 $/PR=0.54
+  2026-W39 days=1 $  35.37 PRs=  75 $/PR=0.47
+  2026-W40 days=4 $  15.13 PRs=  14 $/PR=1.08
+  2026-W41 days=7 $ 317.33 PRs= 361 $/PR=0.88
+  2026-W42 days=7 $ 244.78 PRs= 284 $/PR=0.86
+  2026-W43 days=7 $  85.02 PRs= 242 $/PR=0.35
+  2026-W44 days=7 $ 162.03 PRs= 412 $/PR=0.39
+  2026-W45 days=7 $ 155.22 PRs= 375 $/PR=0.41
+  2026-W46 days=2 $  23.17 PRs=  53 $/PR=0.44
+Actions era failed/cancelled job-min share 13.4% x CF spend on observed Actions-era days $1681.12 = $224.66 attributable to failed/cancelled jobs
+GitHub screenshot: 51,888 failed-job min of 554,030 = 9.4%
+Direct mode: 'Unattributed' (no lane log: superseded/failed/idle) = 12.8%% of heavy $ 11-03..11-09 (../ci-cost-cut-2026-11/README.md)
+
+== 6. Engineering effort on the CI system since 2026-07-10 (paths: workers/ci-runner, workers/runner-router, .github/workflows) ==
+non-merge commits: 433
+  2026-07 total=117 fix= 43 feat= 43 perf= 4 ci= 9 chore= 6 other=12  active_days=20
+  2026-08 total=190 fix=122 feat= 39 perf= 7 ci=10 chore= 8 other= 4  active_days=28
+  2026-09 total= 60 fix= 38 feat=  6 perf= 4 ci= 2 chore= 7 other= 3  active_days=12
+  2026-10 total= 52 fix= 27 feat=  8 perf= 0 ci=13 chore= 3 other= 1  active_days=20
+  2026-11 total= 14 fix=  3 feat=  2 perf= 1 ci= 3 chore= 0 other= 5  active_days= 5
+  all: fix share 54%, active days 85 of 125
+first-parent main entries (= merged PRs): 422
+  2026-07 total=116 fix= 42 feat= 43 perf= 4 ci= 9 chore= 6 other=12  active_days=20
+  2026-08 total=188 fix=120 feat= 39 perf= 7 ci=10 chore= 8 other= 4  active_days=28
+  2026-09 total= 58 fix= 36 feat=  6 perf= 4 ci= 2 chore= 7 other= 3  active_days=12
+  2026-10 total= 48 fix= 23 feat= 11 perf= 0 ci= 7 chore= 5 other= 2  active_days=22
+  2026-11 total= 12 fix=  5 feat=  3 perf= 1 ci= 3 chore= 0 other= 0  active_days= 6
+  all: fix share 54%, active days 88 of 125
+non-merge commits touching workers/ci-runner or workers/runner-router only: 94
+
+== 7. Incident probes ==
+07-22 queue stall: runs created 07-20..07-22 with created->updated > 6 h: 88 (by conclusion {'failure': 24, 'success': 57, 'cancelled': 7})
+CI workflow failure rate 2026-08-15..2026-08-21: 49% of 441 decided runs
+CI workflow failure rate 2026-08-22..2026-08-24: 37% of 205 decided runs
+CI workflow failure rate 2026-08-25..2026-08-31: 37% of 682 decided runs
+startup_failure runs from 10-15: 511, first 2026-10-17T12:47:48Z, last fetched 2026-10-19T23:48:38Z
+last Actions run with a non-startup_failure conclusion: 2026-10-17T18:38:08Z
+merged PRs on main: 10-17 25, 10-18 5, 10-19 20 (UTC)
+10-18..10-31 days with billed heavy $ > 12: 8 of 14: 10-21 $18.62, 10-22 $14.67, 10-24 $12.46, 10-25 $12.28, 10-27 $17.32, 10-29 $18.08, 10-30 $26.74, 10-31 $37.50
+runs/day 2026-09-21..2026-09-29: 2555
+runs/day 2026-09-30..2026-10-03: 68
+runs/day 2026-10-05..2026-10-15: 3125

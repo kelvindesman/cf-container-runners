@@ -1,0 +1,49 @@
+{
+	"fetched": "2026-11-12",
+	"github_hosted": {
+		"url": "https://docs.github.com/en/billing/reference/actions-runner-pricing",
+		"linux_2_core_standard_actions_linux_usd_per_min": 0.006,
+		"linux_2_core_advanced_usd_per_min": 0.006,
+		"linux_4_core_larger_usd_per_min": 0.012,
+		"linux_8_core_larger_usd_per_min": 0.022,
+		"linux_16_core_larger_usd_per_min": 0.042,
+		"quote": "Larger runners are only available for organizations and enterprises using the GitHub Team or GitHub Enterprise Cloud plans.",
+		"self_hosted_platform_charge_listed": false
+	},
+	"github_2026_pricing_change": {
+		"url": "https://github.com/resources/insights/2026-pricing-changes-for-github-actions",
+		"quotes": [
+			"We're postponing the announced billing change for self-hosted GitHub Actions to take time to re-evaluate our approach.",
+			"We are continuing to reduce hosted-runners prices by up to 39% on January 1, 2026."
+		],
+		"self_hosted_charge_announced_usd_per_min": 0.002,
+		"self_hosted_charge_announced_start": "2026-03-01",
+		"status": "postponed, no new date"
+	},
+	"github_free_plan_included_minutes_per_month": 2000,
+	"blacksmith": {
+		"url": "https://www.blacksmith.sh/pricing",
+		"ubuntu_x64_usd_per_min_by_vcpu": {
+			"2": 0.004,
+			"4": 0.008,
+			"8": 0.016,
+			"16": 0.032,
+			"32": 0.064
+		},
+		"ubuntu_arm_2vcpu_usd_per_min": 0.0025,
+		"free_minutes_per_month": 3000,
+		"note": "Values read from the page's vCPU selector data attributes (data-u64). 4 vCPU runner = 16 GB RAM per Blacksmith runner docs (search result for blacksmith-4vcpu-ubuntu-2404: 4 vCPU | 16 GB | 80 GB)."
+	},
+	"cloudflare_containers": {
+		"source": "../cloudflare-spend-2026-10/README.md calibration",
+		"vcpu_usd_per_vcpu_s_on_cpu_used": 0.00002,
+		"memory_usd_per_gib_s_allocated": 0.0000025,
+		"disk_usd_per_gb_s_allocated": 0.00000007
+	},
+	"gcp_runner_boxes": {
+		"source": "commit 12a639265 (#2457) and docs/plans/ci-cf-containers-primary-cutover-2026-07-17.md at b5c9ea7d9",
+		"quote": "The 3 on-demand GCP runner boxes (`lokerdollar-2/3/4`, e2-standard-4) cost ~$300/mo of real cash.",
+		"machine": "e2-standard-4 (4 vCPU / 16 GB)",
+		"usd_per_month_for_three": 300
+	}
+}
