@@ -42,7 +42,7 @@
 	},
 	"gcp_runner_boxes": {
 		"source": "commit 12a639265 (#2457) and docs/plans/ci-cf-containers-primary-cutover-2026-07-17.md at b5c9ea7d9",
-		"quote": "The 3 on-demand GCP runner boxes (`lokerdollar-2/3/4`, e2-standard-4) cost ~$300/mo of real cash.",
+		"quote": "The 3 on-demand GCP runner boxes (e2-standard-4) cost ~$300/mo of real cash.",
 		"machine": "e2-standard-4 (4 vCPU / 16 GB)",
 		"usd_per_month_for_three": 300
 	}
